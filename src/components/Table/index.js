@@ -58,9 +58,9 @@ const Table = () => {
 		}
 	}
 
-	const changeRowsByVertical = (index, oldRow, newRow, step) => {
-		matrix[index] = newRow;
-		matrix[index + step] = oldRow;
+	const changeRowsByVertical = (currentMatrix, index, oldRow, newRow, step) => {
+		currentMatrix[index] = newRow;
+		currentMatrix[index + step] = oldRow;
 	}
 
 	const changeRowsByHorizontal = (index, row, step) => {
@@ -99,11 +99,11 @@ const Table = () => {
 				const currentArea = newMatrix[current][0].area;
 
 				if(nextRow && nextRow[0].area === currentArea) {
-					changeRowsByVertical(current, currentRow, nextRow, 1)
+					changeRowsByVertical(newMatrix, current, currentRow, nextRow, 1)
 					return;
 				}
 
-				changeRowsByVertical(current, currentRow, prevRow, -1)
+				changeRowsByVertical(newMatrix, current, currentRow, prevRow, -1)
 
 			} else if(direction === "horizontal") {
 				const currentArea = newMatrix[0][current].area;
